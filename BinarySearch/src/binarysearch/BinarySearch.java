@@ -59,7 +59,7 @@ public class BinarySearch {
         if(find_index ==-1){
             System.out.println("ko tim thay");
         }else{
-            System.out.println("\n"+find_index);
+            System.out.println("Found "+value+" at index:  "+find_index);
         }
         
     }

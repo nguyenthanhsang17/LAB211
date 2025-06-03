@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package changebasenumber;
+
 import Controller.ChangeBase;
 import Controller.Input;
 import View.View;
+
 /**
  *
  * @author Admin
@@ -20,10 +22,38 @@ public class ChangeBaseNumber {
         View view = new View();
         Input input = new Input();
         ChangeBase base = new ChangeBase();
-        int option = input.inputValueInt("Choose the base number input (1 is binary, 2 is decimal,  3 is hexadecimal)", 1, 3);
-        String value = input.InputValue("Enter Value: ", option);
-        
-        System.out.println(base.BinaryToDecimal(value));
+        while (true) {
+            int option = input.inputValueInt("Choose the base number input (1 is binary, 2 is decimal,  3 is hexadecimal)", 1, 3);
+            String value = input.InputValue("Enter Value: ", option);
+            int option_2 = input.inputValueInt("Choose the base number input (1 is binary, 2 is decimal,  3 is hexadecimal)", 1, 3);
+            if (option == option_2) {
+                System.out.println("ko dc phep giong nhau");
+            } else {
+                String result = "";
+                if (option == 1) {
+                    if (option_2 == 2) {
+                        result = base.BinaryToDecimal(value);
+                    } else {
+                        result = base.BinaryToHex(value);
+                    }
+                }
+                if (option == 2) {
+                    if (option_2 == 1) {
+                        result = base.DecimalToBinary(value);
+                    } else {
+                        result = base.DecimalToHexDecimal(value);
+                    }
+                }
+                if (option == 3) {
+                    if (option_2 == 2) {
+                        result = base.HexDecimalToDecimal(value);
+                    } else {
+                        result = base.HEXtoBinary(value);
+                    }
+                }
+                System.out.println(result);
+            }
+        }
     }
-    
+
 }
