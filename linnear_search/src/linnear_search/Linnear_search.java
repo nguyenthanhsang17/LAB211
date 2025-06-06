@@ -7,6 +7,7 @@ package linnear_search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -21,13 +22,16 @@ public class Linnear_search {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //enter number of array
+        int number = inputValueInt("Enter number of array: ");
         //enter search value
         int a = inputValueInt("Enter search value: ");
         // define array
         int[] array = new int[10];
+        Random random = new Random();
         // use loop for to enter element of array
         for (int i = 0; i < 10; i++) {
-            array[i] = inputValueInt("arr[" + i + "]: ");
+            array[i] = random.nextInt(number);
         }
         // define list for remember position of value search in array
         List<Integer> list = new ArrayList<>();
@@ -57,22 +61,25 @@ public class Linnear_search {
         String input;
         int result;
         do {
-            // Print message for require user enter value 
+            //Print message for require user enter value 
             System.out.println(msg);
-            // enter input value
+            //enter input value
             input = sc.nextLine();
-            // .trim check space in head and last, check equals String empty
+            // .trim check space on head and last, check equals String empty
             if (input.trim().equals("")) {
                 System.out.println("not input spacex");
                 continue;
             }
             try {
                 //parse String value to Double value
+                
                 double number = Double.parseDouble(input);
                 // cast datatype 
+                //2.3 = > 2
                 if (number == (int) number) {
                     result = (int) number;
                     break;
+                //
                 } else {
                     System.out.println("not input real number");
                     continue;

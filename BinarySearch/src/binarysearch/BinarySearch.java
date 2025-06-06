@@ -47,14 +47,15 @@ public class BinarySearch {
                 start_index = midle_index+1;
             }
         }
-        
+        System.out.print("The array: [");
         for (int i = 0; i < numberOfArray; i++) {
             if(i==numberOfArray-1){
-                System.out.println(arrayAfterSort[i]);
+                System.out.print(arrayAfterSort[i]);
                 continue;
             }
             System.out.print(arrayAfterSort[i]+",");
         }
+        System.out.println("]");
         
         if(find_index ==-1){
             System.out.println("ko tim thay");
