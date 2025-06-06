@@ -14,72 +14,75 @@ import java.util.Scanner;
  * @author Admin
  */
 public class Linnear_search {
-    
+
     private static final Scanner sc = new Scanner(System.in);
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int a  = inputValueInt("Enter search value: ");
-        int [] array = new int[10];
+        //enter search value
+        int a = inputValueInt("Enter search value: ");
+        // define array
+        int[] array = new int[10];
+        // use loop for to enter element of array
         for (int i = 0; i < 10; i++) {
-            array[i] = inputValueInt("arr["+i+"]: ");
+            array[i] = inputValueInt("arr[" + i + "]: ");
         }
-        
+        // define list for remember position of value search in array
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            if(a==array[i]){
+            if (a == array[i]) {
                 list.add(i);
             }
         }
+        // print array
         System.out.print("The array: [");
         for (int i = 0; i < 10; i++) {
-            if(i==9){
+            if (i == 9) {
                 System.out.print(array[i]);
-            }else{
-                System.out.print(array[i]+", ");
+            } else {
+                System.out.print(array[i] + ", ");
             }
         }
         System.out.println("]");
-        
+        //print the result 
         for (int i = 0; i < list.size(); i++) {
-            System.out.println("Found "+a+" at index: "+list.get(i));
+            System.out.println("Found " + a + " at index: " + list.get(i));
         }
     }
-    
-    public static int inputValueInt(String msg){
-        // "                   "
-        // "vu" => 
-        //"2.3" = 2.3
-        //"12"
+
+    public static int inputValueInt(String msg) {
+        // 
         String input;
-        int result ;
-        do {            
+        int result;
+        do {
+            // Print message for require user enter value 
             System.out.println(msg);
+            // enter input value
             input = sc.nextLine();
-            // check spam spaces loix
-            if(input.trim().equals("")){
+            // .trim check space in head and last, check equals String empty
+            if (input.trim().equals("")) {
                 System.out.println("not input spacex");
                 continue;
             }
             try {
-                double number  = Double.parseDouble(input);
-                 
-                if(number==(int)number){
+                //parse String value to Double value
+                double number = Double.parseDouble(input);
+                // cast datatype 
+                if (number == (int) number) {
                     result = (int) number;
                     break;
-                }else{
+                } else {
                     System.out.println("not input real number");
-                continue;
+                    continue;
                 }
             } catch (Exception e) {
                 System.out.println("must be input integer number !!!!!!");
             }
-               
+
         } while (true);
         return result;
     }
-    
-    
-    
+
 }

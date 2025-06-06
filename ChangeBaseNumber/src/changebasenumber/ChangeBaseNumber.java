@@ -51,7 +51,7 @@ public class ChangeBaseNumber {
                         result = base.HEXtoBinary(value);
                     }
                 }
-                System.out.println(result);
+                System.out.println("result: "+result);
             }
         }
     }

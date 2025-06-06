@@ -21,7 +21,7 @@ public class Fibonnaci {
         System.out.print("0, 1, ");
         BigInteger first = new BigInteger("0");
         BigInteger second = new BigInteger("1");
-        Fibonnaci(first, second, 100);
+        Fibonnaci(first, second, 45);
     }
 
     public static int Fibonnaci(BigInteger first, BigInteger second, int number) {

@@ -26,6 +26,8 @@ public class CountLetter {
         HashMap<Character, Integer> hashMap1 = new HashMap<>();
 
         input = input.trim();
+        //hung vu sang
+        //{"hung","vu", "sang" , "", ""}
         String word[] = input.split(" ");
         for (int i = 0; i < word.length; i++) {
             if (!word[i].equals("") && !word[i].isEmpty()) {
