@@ -27,23 +27,25 @@ public class Linnear_search {
         //enter search value
         int a = inputValueInt("Enter search value: ");
         // define array
-        int[] array = new int[10];
+        int[] array = new int[number];
         Random random = new Random();
         // use loop for to enter element of array
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < number; i++) {
             array[i] = random.nextInt(number);
         }
         // define list for remember position of value search in array
         List<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        //
+        for (int i = 0; i < number; i++) {
             if (a == array[i]) {
                 list.add(i);
             }
         }
         // print array
         System.out.print("The array: [");
-        for (int i = 0; i < 10; i++) {
-            if (i == 9) {
+        for (int i = 0; i < number; i++) {
+            //in ra so cuoi cung
+            if (i == number - 1) {
                 System.out.print(array[i]);
             } else {
                 System.out.print(array[i] + ", ");
@@ -51,8 +53,13 @@ public class Linnear_search {
         }
         System.out.println("]");
         //print the result 
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println("Found " + a + " at index: " + list.get(i));
+        //kiem tra list luu vi tri kia co phan tu nao ko
+        if (list.isEmpty()) {
+            System.out.println("Can't not found !!!!");
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                System.out.println("Found " + a + " at index: " + list.get(i));
+            }
         }
     }
 
@@ -72,14 +79,14 @@ public class Linnear_search {
             }
             try {
                 //parse String value to Double value
-                
+
                 double number = Double.parseDouble(input);
                 // cast datatype 
                 //2.3 = > 2
                 if (number == (int) number) {
                     result = (int) number;
                     break;
-                //
+                    //
                 } else {
                     System.out.println("not input real number");
                     continue;
