@@ -21,31 +21,32 @@ public class CountLetter {
      */
     public static void main(String[] args) {
         String input = inputValue("Enter your content:");
-
+        // hash key value
         HashMap<String, Integer> hashMap = new HashMap<>();
         HashMap<Character, Integer> hashMap1 = new HashMap<>();
-
-        input = input.trim();
-        //hung vu sang
-        //{"hung","vu", "sang" , "", ""}
+        //hung vu   sang hung hung
+        // hashmap rong {hung, 1}
+        //{"hung","vu", "", "", "sang" }
         String word[] = input.split(" ");
+        
         for (int i = 0; i < word.length; i++) {
             if (!word[i].equals("") && !word[i].isEmpty()) {
                 if (hashMap.containsKey(word[i])) {
                     int count = hashMap.get(word[i]);
                     count++;
+                    // {hung, 2}
                     hashMap.put(word[i], count);
                 } else {
                     hashMap.put(word[i], 1);
                 }
             } 
         }
-
+        //hung vu   sang hung hung
         for (int i = 0; i < input.length(); i++) {
             if (input.charAt(i) != ' ') {
                 char hung = input.charAt(i);
                 if (hashMap1.containsKey(hung)) {
-                    int count = hashMap1.get(hung);
+                    int count = hashMap1.get(hung);//{h, 1} // 1
                     count++;
                     hashMap1.put(hung, count);
                 } else {
@@ -64,6 +65,7 @@ public class CountLetter {
             System.out.println(msg);
             input = sc.nextLine();
             // check spam spaces loix
+            // ""
             if (input.trim().equals("")) {
                 System.out.println("Not input spacex");
                 continue;
@@ -72,7 +74,7 @@ public class CountLetter {
             }
         } while (true);
 
-        return input;
+        return input.trim();
     }
 
 }
