@@ -25,7 +25,7 @@ public class Linnear_search {
         //enter number of array
         int number = inputValueInt("Enter number of array: ");
         //enter search value
-        int a = inputValueInt("Enter search value: ");
+        int value = inputValueInt("Enter search value: ");
         // define array
         int[] array = new int[number];
         Random random = new Random();
@@ -37,7 +37,7 @@ public class Linnear_search {
         List<Integer> list = new ArrayList<>();
         //
         for (int i = 0; i < number; i++) {
-            if (a == array[i]) {
+            if (value == array[i]) {
                 list.add(i);
             }
         }
@@ -58,7 +58,7 @@ public class Linnear_search {
             System.out.println("Can't not found !!!!");
         } else {
             for (int i = 0; i < list.size(); i++) {
-                System.out.println("Found " + a + " at index: " + list.get(i));
+                System.out.println("Found " + value + " at index: " + list.get(i));
             }
         }
     }
@@ -74,7 +74,7 @@ public class Linnear_search {
             input = sc.nextLine();
             // .trim check space on head and last, check equals String empty
             if (input.trim().equals("")) {
-                System.out.println("not input spacex");
+                System.out.println("not input space");
                 continue;
             }
             try {

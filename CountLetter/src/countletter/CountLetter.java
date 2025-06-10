@@ -24,17 +24,20 @@ public class CountLetter {
         // hash key value
         HashMap<String, Integer> hashMap = new HashMap<>();
         HashMap<Character, Integer> hashMap1 = new HashMap<>();
-        //hung vu   sang hung hung
-        // hashmap rong {hung, 1}
-        //{"hung","vu", "", "", "sang" }
+        //hung vu sang hung   vu
+        //{"hung", "vu", "sang", "hung","","","vu"}
         String word[] = input.split(" ");
-        
+        // for de duyet phan tu mang word
         for (int i = 0; i < word.length; i++) {
+            // check 
             if (!word[i].equals("") && !word[i].isEmpty()) {
+                //hashmap {hung, 1} {vu, 2}, {sang, 1}
+                //hung
+                //{hung, 1}
+                //count  = 2;{hung, 1000}
                 if (hashMap.containsKey(word[i])) {
                     int count = hashMap.get(word[i]);
                     count++;
-                    // {hung, 2}
                     hashMap.put(word[i], count);
                 } else {
                     hashMap.put(word[i], 1);
@@ -42,15 +45,17 @@ public class CountLetter {
             } 
         }
         //hung vu   sang hung hung
+        // duyet tung ky tu trong mang
         for (int i = 0; i < input.length(); i++) {
+            
             if (input.charAt(i) != ' ') {
-                char hung = input.charAt(i);
-                if (hashMap1.containsKey(hung)) {
-                    int count = hashMap1.get(hung);//{h, 1} // 1
+                char kytu = input.charAt(i);
+                if (hashMap1.containsKey(kytu)) {
+                    int count = hashMap1.get(kytu);//{h, 1} // 1
                     count++;
-                    hashMap1.put(hung, count);
-                } else {
-                    hashMap1.put(hung, 1);
+                    hashMap1.put(kytu, count);
+                }else {
+                    hashMap1.put(kytu, 1);
                 }
             }
         }
@@ -65,7 +70,7 @@ public class CountLetter {
             System.out.println(msg);
             input = sc.nextLine();
             // check spam spaces loix
-            // ""
+            // "v   u"
             if (input.trim().equals("")) {
                 System.out.println("Not input spacex");
                 continue;
