@@ -22,15 +22,22 @@ public class BinarySearch {
     public static void main(String[] args) {
         Random random = new Random();
         int numberOfArray = inputValueInt("Enter number of array: ");
-        int [] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int [] array = new int[numberOfArray];
         // 1, 3, 4, 5, 6, 6, 6, 6, 8, 9
-        int value = inputValueInt("Enter search value: ");
-//        for (int i = 0; i < numberOfArray; i++) {
-//            //array[i] = inputValueInt("arr["+i+"]: ");
-//            array[i] = random.nextInt(numberOfArray);
-//        }
+        for (int i = 0; i < numberOfArray; i++) {
+            array[i] = random.nextInt(numberOfArray); 
+        }
         int [] arrayAfterSort = sortArray(array);
-        
+        System.out.print("The array: [");
+        for (int i = 0; i < numberOfArray; i++) {
+            if(i==numberOfArray-1){
+                System.out.print(arrayAfterSort[i]);
+                continue;
+            }
+            System.out.print(arrayAfterSort[i]+",");
+        }
+        System.out.println("]");
+        int value = inputValueInt("Enter search value: ");
         int start_index=0;
         int end_index = numberOfArray-1;
         int find_index = -1;
@@ -48,22 +55,13 @@ public class BinarySearch {
                 start_index = midle_index+1;
             }
         }
-        System.out.print("The array: [");
-        for (int i = 0; i < numberOfArray; i++) {
-            if(i==numberOfArray-1){
-                System.out.print(arrayAfterSort[i]);
-                continue;
-            }
-            System.out.print(arrayAfterSort[i]+",");
-        }
-        System.out.println("]");
+        
         
         if(find_index ==-1){
             System.out.println("ko tim thay");
         }else{
             System.out.println("Found "+value+" at index:  "+find_index);
         }
-        
     }
     public static int[] sortArray(int [] array){
         int length = array.length;
