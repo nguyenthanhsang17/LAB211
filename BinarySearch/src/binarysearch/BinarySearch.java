@@ -5,6 +5,11 @@
  */
 package binarysearch;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -22,11 +27,13 @@ public class BinarySearch {
     public static void main(String[] args) {
         Random random = new Random();
         int numberOfArray = inputValueInt("Enter number of array: ");
-        int [] array = new int[numberOfArray];
+        //int [] array = new int[numberOfArray];
+        int [] array = {6, 0, 0, 8, 8, 9, 5, 8, 1, 8};
+        
         // 1, 3, 4, 5, 6, 6, 6, 6, 8, 9
-        for (int i = 0; i < numberOfArray; i++) {
-            array[i] = random.nextInt(numberOfArray); 
-        }
+//        for (int i = 0; i < numberOfArray; i++) {
+//            array[i] = random.nextInt(numberOfArray); 
+//        }
         int [] arrayAfterSort = sortArray(array);
         System.out.print("The array: [");
         for (int i = 0; i < numberOfArray; i++) {
@@ -41,7 +48,7 @@ public class BinarySearch {
         int start_index=0;
         int end_index = numberOfArray-1;
         int find_index = -1;
-        
+        //start_index>end_index
         while (start_index<=end_index) {  
             int midle_index = (start_index+end_index)/2;
             if(arrayAfterSort[midle_index]==value){
@@ -60,7 +67,37 @@ public class BinarySearch {
         if(find_index ==-1){
             System.out.println("ko tim thay");
         }else{
-            System.out.println("Found "+value+" at index:  "+find_index);
+            List<Integer> positions = new ArrayList<>();
+            positions.add(find_index);
+            
+            
+            
+            for(int i = find_index+1;i<numberOfArray;i++){
+                if(arrayAfterSort[i]==value){
+                    positions.add(i);
+                }else{
+                    break;
+                }
+            }
+            for(int i = find_index-1;i>=0;i--){
+                if(arrayAfterSort[i]==value){
+                    positions.add(i);
+                }else{
+                    break;
+                }
+            }
+            Comparator comparator = new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return o1.compareTo(o2);
+                }
+            };
+            Collections.sort(positions, comparator);
+            //System.out.println("Found "+value+" at index:  "+find_index);
+            for (Integer position : positions) {
+               System.out.println("Found "+value+" at index:  "+position); 
+            }
+            
         }
     }
     public static int[] sortArray(int [] array){
