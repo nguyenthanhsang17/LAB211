@@ -5,10 +5,6 @@
  */
 package manageworker;
 
-import Controller.InputValidate;
-import Controller.ManagementWorker;
-import Models.HistoryChangeSalary;
-import Models.Worker;
 import java.util.List;
 
 /**
@@ -42,25 +38,25 @@ public class ManageWorker {
 
             switch (choose) {
                 case 1:
-                      System.out.println("--------- Add Worker ----------");
-                      String code = inputValidate.inputValue("Enter Code:");
-                      String name = inputValidate.inputValue("Enter Name:");
-                      int age = inputValidate.inputValueInt("Enter Age:", 0, Integer.MAX_VALUE);
-                      double salary = inputValidate.inputValueDouble("Enter Salary: ", 0);
-                      String Location = inputValidate.inputValue("Enter work location: ");
-                      Worker worker = new Worker(code, name, age, salary, Location);
-                      boolean check = manageWorker.addWorker(worker);
-                      if(check){
-                          System.out.println("succees");
-                      }else{
-                          System.out.println("failed");
-                      }
+                    System.out.println("--------- Add Worker ----------");
+                    String code = inputValidate.inputValue("Enter Code:");
+                    String name = inputValidate.inputValue("Enter Name:");
+                    int age = inputValidate.inputValueInt("Enter Age:", 0, Integer.MAX_VALUE);
+                    double salary = inputValidate.inputValueDouble("Enter Salary: ", 0);
+                    String Location = inputValidate.inputValue("Enter work location: ");
+                    Worker worker = new Worker(code, name, age, salary, Location);
+                    boolean check = manageWorker.addWorker(worker);
+                    if (check) {
+                        System.out.println("succees");
+                    } else {
+                        System.out.println("failed");
+                    }
                     break;
                 case 2:
                     System.out.println("------- Up/Down Salary --------");
                     String code_change = inputValidate.inputValue("Enter Code:");
                     double salaryChange = inputValidate.inputValueDouble("Enter Salary: ", 0);
-                    
+
                     boolean check_1 = manageWorker.changeSalary("UP", code_change, salaryChange);
                     System.out.println(check_1);
                     break;
@@ -68,19 +64,18 @@ public class ManageWorker {
                     System.out.println("------- Up/Down Salary --------");
                     String code_change_1 = inputValidate.inputValue("Enter Code:");
                     double salaryChange_2 = inputValidate.inputValueDouble("Enter Salary: ", 0);
-                    
+
                     boolean check_2 = manageWorker.changeSalary("DOWN", code_change_1, salaryChange_2);
                     System.out.println(check_2);
                     break;
                 case 4:
-                    List<HistoryChangeSalary>  changeSalarys = manageWorker.getInfomationSalary();
+                    List<Worker> workers = manageWorker.getInfomationSalary();
                     System.out.println("--------------------Display Information Salary-----------------------");
                     //Code 	Name	 	Age    	Salary		Status  	Date
                     System.out.printf("%-15s %-15s %-15s %-10s %-15s %-10s\n", "Code", "Name", "Age", "Salary", "Status", "Date");
-                    for (HistoryChangeSalary changeSalary : changeSalarys) {
-                        System.out.print(changeSalary);
+                    for (Worker worker1 : workers) {
+                        worker1.toStringWorker();
                     }
-                    
                     break;
                 default:
                     throw new AssertionError();

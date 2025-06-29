@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package doctor_management;
 
-import Model.Doctor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -38,10 +37,7 @@ public class DoctorManagement {
         }
     }
 
-    public boolean updateDoctor(String Code,
-            String Name,
-            String Specialization,
-            String Availability) {
+    public boolean updateDoctor(String Code, String Name, String Specialization, String Availability) {
         if (listDoctor.containsKey(Code)) {
             Doctor old_Doctor = listDoctor.get(Code);
 
@@ -72,7 +68,7 @@ public class DoctorManagement {
         for (Entry<String, Doctor> entry : doctors) {
             //String key = entry.getKey();
             Doctor value = entry.getValue();
-            if(value.getName().toUpperCase().contains(input.toLowerCase())){
+            if(value.getName().toUpperCase().contains(input.toUpperCase())){
                 listFind.put(value.getCode(), value);
             }
         }

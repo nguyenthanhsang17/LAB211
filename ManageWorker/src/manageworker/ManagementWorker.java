@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package manageworker;
 
-import Models.HistoryChangeSalary;
-import Models.Worker;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -20,14 +20,11 @@ import java.util.List;
 public class ManagementWorker {
 
     private List<Worker> workers = new ArrayList<>();
-    private List<HistoryChangeSalary> historyChangeSalarys = new ArrayList<>();
 
     private boolean CheckCodeExits(String code) {
-
         if (workers.size() == 0) {
             return false;
         }
-
         for (Worker worker : workers) {
             if (worker.getCode().equals(code)) {
                 return true;
@@ -58,7 +55,6 @@ public class ManagementWorker {
             return false;
         }
         double salary = find.getSalary();
-
         if (status.equals("DOWN")) {
             salary = salary - amount;
             if (salary < 0) {
@@ -75,15 +71,23 @@ public class ManagementWorker {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Date_STR = sdf.format(now);
 
-        HistoryChangeSalary changeSalary = new HistoryChangeSalary(find.getCode(), find.getName(), find.getAge(), salary, status, Date_STR);
-        historyChangeSalarys.add(changeSalary);
+        find.AddStatus(status);
+        find.AddSalaryChange(salary);
+        find.AddDate(Date_STR);
+        
         return true;
-
     }
     
-    
-    public List<HistoryChangeSalary> getInfomationSalary(){
-        return historyChangeSalarys;
+    public List<Worker> getInfomationSalary(){
+        
+        Comparator comparator = new Comparator<Worker>() {
+            @Override
+            public int compare(Worker o1, Worker o2) {
+                return o1.getCode().compareTo(o2.getCode());
+            }
+        };
+        workers.sort(comparator);
+        return workers;
     }
 
 }

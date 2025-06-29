@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package doctor_management;
 
 import java.util.Scanner;
 
@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Admin
  */
 public class InputValidate {
+
     private static final Scanner sc = new Scanner(System.in);
 
     public int inputValueInt(String msg, int min, int max) {
@@ -45,11 +46,11 @@ public class InputValidate {
         } while (true);
         return result;
     }
-    
+
     public String inputValue(String msg) {
         String input;
         do {
-            System.out.println(msg);
+            System.out.print(msg);
             input = sc.nextLine();
             if (input.trim().equals("")) {
                 System.out.println("Not input spacex");
@@ -61,11 +62,18 @@ public class InputValidate {
 
         return input.trim();
     }
-    
+
+    public String inputValueAllowNull(String msg) {
+        String input;
+        System.out.print(msg);
+        input = sc.nextLine();
+        return input.trim();
+    }
+
     public double inputValueDouble(String msg, int min) {
         String input;
         do {
-            System.out.println(msg);
+            System.out.print(msg);
             input = sc.nextLine();
             if (input.trim().equals("")) {
                 System.out.println("not input space");
@@ -84,6 +92,5 @@ public class InputValidate {
 
         } while (true);
     }
-    
-    
+
 }
