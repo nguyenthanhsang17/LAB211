@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package View;
 
 import Model.EastAsiaCountries;
 import com.sun.javafx.css.Combinator;
@@ -18,35 +18,43 @@ import java.util.List;
  */
 public class ManageEastAsiaCountries {
 
+    // tạo list lưu trữ EastAsiaCountries
     private List<EastAsiaCountries> countrieses = new ArrayList<>();
     private EastAsiaCountries justInput = null;
 
     private boolean checkIdExists(String id) {
-        //ABC abc
+        //ABC abc khai báo bien
         boolean check = true;
+        //duyet list EastAsiaCountries
         for (EastAsiaCountries countriese : countrieses) {
             if (countriese.getCountryCode().equalsIgnoreCase(id)) {
-                check = false;
+                // true tồn tại
+                check = true;
                 break;
             }
         }
-        return check;
+        return false;
     }
 
     public boolean addCountryInformation(EastAsiaCountries countries) {
+        // kiểm tra code để xem code tồn tại ko countries vào list 
         boolean check = checkIdExists(countries.getCountryCode());
-        if (!check) {
+        // tồn tại check =>  true => ko cho countries vào list countrieses
+        // nguoc lai false => ko tồn tại => đc vao list
+        // kiêm tra 
+        if (check == true) {
             return false;
+        } else {
+            countrieses.add(countries);
+            justInput = countries;
+            return true;
         }
-        countrieses.add(countries);
-        justInput = countries;
-        return true;
     }
-    //Viet Nam = > VIET NAM
-    //viet     => VIET
 
     public List<EastAsiaCountries> searchInformationByName(String name) {
+        // cb bi lisst đưa phan tu thoa man dieu kien name 
         List<EastAsiaCountries> AfterSearch = new ArrayList<>();
+
         for (EastAsiaCountries countriese : countrieses) {
             if (countriese.getCountryName().toUpperCase().contains(name.toUpperCase())) {
                 AfterSearch.add(countriese);

@@ -6,7 +6,7 @@
 package geographic;
 
 import Controller.InputValidate;
-import Controller.ManageEastAsiaCountries;
+import View.ManageEastAsiaCountries;
 import Model.EastAsiaCountries;
 import View.View;
 import java.util.List;
