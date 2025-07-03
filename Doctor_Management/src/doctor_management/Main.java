@@ -56,12 +56,16 @@ public class Main {
                     String search = inputValidate.inputValueAllowNull("Enter text: ");
                     System.out.println("--------- Result ------------");
                     HashMap<String, Doctor> Find = management.searchDoctor(search);
-                    System.out.printf("%-15s %-15s %-15s %-10s\n", "Code", "Name", "Specialization", "Availability");
-                    Set<Map.Entry<String, Doctor>> doctors = Find.entrySet();
-                    for (Map.Entry<String, Doctor> entry : doctors) {
-                        //String key = entry.getKey();
-                        Doctor value = entry.getValue();
-                        System.out.printf("%-15s %-15s %-15s %-10s\n", value.getCode(), value.getName(), value.getSpecialization(), value.getAvailability() + "");
+                    if (Find.size() == 0) {
+                        System.out.println("deo cos !!!");
+                    } else {
+                        System.out.printf("%-15s %-15s %-15s %-10s\n", "Code", "Name", "Specialization", "Availability");
+                        Set<Map.Entry<String, Doctor>> doctors = Find.entrySet();
+                        for (Map.Entry<String, Doctor> entry : doctors) {
+                            //String key = entry.getKey();
+                            Doctor value = entry.getValue();
+                            System.out.printf("%-15s %-15s %-15s %-10s\n", value.getCode(), value.getName(), value.getSpecialization(), value.getAvailability() + "");
+                        }
                     }
 
                     break;

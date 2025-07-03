@@ -18,15 +18,10 @@ public class Worker {
     private int Age;
     private double Salary;
     private String work_location;
-    
-    
-    
     //================= history
-    
-    private List<Double> SalaryChange;
+    private List<Double> SalaryChange; // SalaryChange = null |||||| SalaryChange.add(.....) 
     private List<String> Status;
     private List<String> Date;
-    
     //===============
 
     
@@ -39,13 +34,11 @@ public class Worker {
         this.Age = Age;
         this.Salary = Salary;
         this.work_location = work_location;
-        this.SalaryChange = new ArrayList<>();
-        this.Status = new  ArrayList<>();
+        this.SalaryChange = new ArrayList<>();//SalaryChange = {} SalaryChange.add(.....)  == oke
+        this.Status = new ArrayList<>();
         this.Date = Date = new ArrayList<>();
     }
-
     
-
     public String getCode() {
         return code;
     }
@@ -122,9 +115,10 @@ public class Worker {
         this.Date.add(date);
     }
     
+    
     public void toStringWorker() {
         int length = Status.size();
-        
+        // in ra lich su doi luong cho 1 object
         for (int i = 0; i < length; i++) {
             System.out.printf("%-15s %-15s %-15s %-10s %-15s %-10s\n", code, Name, Age, SalaryChange.get(i), Status.get(i), Date.get(i));
         }
