@@ -8,8 +8,11 @@ package manage_students_175;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
@@ -43,14 +46,19 @@ public class ManagerStudent {
 
         // dung dowhile de vong la vo han dc
         do {
+            System.out.println("======= Input "+(count+1)+": ");
             // nhap thong cac thuoc tinh
+            System.out.print("ID: ");
             String id = sc.nextLine().trim();
+            System.out.print("Name: ");
             String name = sc.nextLine().trim();
+            System.out.print("Semester: ");
             String semester = sc.nextLine().trim();
+            System.out.print("courseName: ");
             String courseName = sc.nextLine().trim();
             //tao doi tuong 
-            Student student = new Student(id, courseName, semester, courseName);
-
+            Student student = new Student(id, name, semester, courseName);
+            System.out.println("----"+student);
             if (checkidexits(id) == true) {
                 // if ko trung thi add
                 students.add(student);
@@ -64,7 +72,7 @@ public class ManagerStudent {
             }
             //check count >= 10
             //count = 10
-            if (count >= 10) {
+            if (count >= 3) {
                 //in ra thong bao
                 System.out.print("Do you want to continue (Y/N)?: ");
                 // nhap
@@ -85,10 +93,11 @@ public class ManagerStudent {
         // nhap ten 
         // tai sao find trc sort 
         // de giam bot so luong cua list sort hieu qua hon
+        System.out.print("Name: ");
         String name = sc.nextLine().trim();
         ArrayList<Student> students_find = new ArrayList<>();
-        //ArrayList<Student> students_find = null
-        for (Student student : students_find) {
+        //ArrayList<Student> students_find = null  lỗi students_find
+        for (Student student : students) {
             if (student.getStudentName().contains(name)) {
                 students_find.add(student);
             }
@@ -108,6 +117,7 @@ public class ManagerStudent {
 
     public void UpdateAndDelete() {
         // nhap id
+        System.out.println("ID: ");
         String id = sc.nextLine().trim();
         //duyet qua
         Student find = null;
@@ -126,17 +136,45 @@ public class ManagerStudent {
         String choose = sc.nextLine();
         // check xem tiep hay ko 
         if (choose.equalsIgnoreCase("U")) {
+            System.out.print("Name: ");
             String name = sc.nextLine().trim();
+            System.out.print("Semester: ");
             String semester = sc.nextLine().trim();
+            System.out.print("courseName: ");
             String courseName = sc.nextLine().trim();
-            //tao doi tuong 
-            find = new Student(id, courseName, semester, courseName);
-
+            //tao doi tuong // van de new tao cung nho moi ko tro vao vung nho cu +> giu lai vung nho cu
+            //find = new Student(id, name, semester, courseName);
+            find.setStudentName(name);
+            find.setSemester(semester);
+            find.setCourseName(courseName);
         } else {
-            
+
             students.remove(find);
         }
+    }
 
+    public void report() {
+        //tao hashmap // giong count letter /// vi minh phải di dem ten + course
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        //dungf vong for check xem key String(name course) xem cos trong map ko
+        for (Student student : students) {
+            //check xem key String(name course) xem cos trong map ko
+            if (!hashMap.containsKey(student.getStudentName() + "   " + student.getCourseName())) {
+//                
+                hashMap.put(student.getStudentName() + "   " + student.getCourseName(), 1);
+            } else {
+                //neu chưa có put vào map vưới count = 0
+
+                int count = hashMap.get(student.getStudentName() + "   " + student.getCourseName());
+                count++;
+                hashMap.put(student.getStudentName() + "   " + student.getCourseName(), count);
+            }
+        }
+
+        Set<Map.Entry<String, Integer>> studentSS = hashMap.entrySet();
+        for (Map.Entry<String, Integer> entry : studentSS) {
+            System.out.println(entry.getKey() + "\t" + entry.getValue());
+        }
     }
 
 }
