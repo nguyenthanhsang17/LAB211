@@ -16,10 +16,9 @@ import java.util.Set;
  */
 public class DoctorManagement {
 
-    // tạo hashmap key value,  key lưu code doctor
+    // tạo hashmap key value,  key lưu code doctor để lưu trữ doctoc dang key code, value là doctor ==> code ko bị trùng
     private HashMap<String, Doctor> listDoctor = new HashMap<>();
 
-    
     //1 object Doctor
     public boolean add_Doctor(Doctor doctor) {
         // check hashmap chứa key của doctor mới mình truyền vào
@@ -47,7 +46,8 @@ public class DoctorManagement {
         }
     }
     
-    // truyền vào 4 string
+    // truyền vào 4 string(khi update user có thể input Availability là blank nếu để int thì lỗi chương trình bên main thì để string cho phép user có thể nhập blank)
+    // và check Availability!=null&&!Availability.trim().isEmpty() nếu có nhập ép kiểu Integer.parseInt(Availability); ép kiểu từ string => int
     public boolean updateDoctor(String Code, String Name, String Specialization, String Availability) {
         //check xem hashmap có chứa key nào giống code này ko
         if (listDoctor.containsKey(Code)) {
@@ -84,7 +84,7 @@ public class DoctorManagement {
         for (Entry<String, Doctor> entry : doctors) {
             //String key = entry.getKey();
             Doctor value = entry.getValue();
-            //Nghia   =>  nG
+            //Nghia   =>  Gh
              
             if(value.getName().toUpperCase().contains(input.toUpperCase())){
                 listFind.put(value.getCode(), value);
