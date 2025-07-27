@@ -12,7 +12,7 @@ package firsrtprogram;
 public class Student {
     private String code;
     private String Name;
-
+	//sang
     public Student() {
     }
 
